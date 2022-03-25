@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import Image1 from "../../images/Following-Social1.jpeg";
 import Image2 from "../../images/Following-Social2.jpeg";
 import Image3 from "../../images/Following-Social3.jpeg";
+import LivepeerSDK from '@livepeer/sdk'
 
 export default function FolowingPage() {
   function PostsSlider() {
@@ -55,6 +56,25 @@ export default function FolowingPage() {
     console.log('Minting!');
     console.log(e);
   }
+  
+  const handleLiveStreaming = (e: any) =>  {
+    console.log('Live Streaming!');
+    console.log(e);
+    
+    const provider = "https://mumbai.infura.io"
+    const controllerAddress = "0x37dC71366Ec655093b9930bc816E16e6b587F968"
+    LivepeerSDK({ provider, controllerAddress }).then(async sdk => {
+
+      // Once initialized, you can access the methods under the `rpc` namespace
+      const { rpc } = sdk
+    
+      // For example, you can get the total supply of Livepeer Tokens like so
+      const tokens = await rpc.getTokenTotalSupply()
+    
+      console.log(tokens)
+      // => string representation of some absurdly high number, maybe "9999999999999999999999" or something like that :)
+    })
+  }
 
   return (
     <div className="container w-[90%] mx-[5%] mt-[2%] min-h-screen ">
@@ -70,6 +90,9 @@ export default function FolowingPage() {
                 Mint NFT
             </button>
         </div>
+        <button type="submit" className="btn btn-primary ml-5" onClick={handleLiveStreaming}>
+            Live streaming
+        </button>
         <div className="flex-none order-3 basis-1/2 min-w-0 h-0">
           <PostsSlider />
         </div>
