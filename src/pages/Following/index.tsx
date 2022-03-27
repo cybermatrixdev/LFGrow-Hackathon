@@ -4,6 +4,7 @@ import Image1 from "../../images/Following-Social1.jpeg";
 import Image2 from "../../images/Following-Social2.jpeg";
 import Image3 from "../../images/Following-Social3.jpeg";
 import LivepeerSDK from '@livepeer/sdk'
+import follow from "./follow"
 
 export default function FolowingPage() {
   function PostsSlider() {
@@ -50,6 +51,7 @@ export default function FolowingPage() {
   const handleFollow = (e: any) =>  {
     console.log('Following!');
     console.log(e);
+    follow()
   }
 
   const handleMint = (e: any) =>  {
